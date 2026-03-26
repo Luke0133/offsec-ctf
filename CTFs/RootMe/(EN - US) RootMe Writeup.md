@@ -5,7 +5,7 @@
 > [!Warning] [EN] This writeup is unfinished. I'm still working to translate everything, sorry for the inconvenience
 ## Sumário
 
-Github link for this writeup: https://github.com/Luke0133/offsec-ctf/blob/593dbef86d02fd5442e272b51cca439b28aec99e/CTFs/RootMe/(EN%20-%20US)%20RootMe%20Writeup.md
+Github link for this writeup: https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/RootMe/(EN%20-%20US)%20RootMe%20Writeup.md
 
 - [Tools Used](#tools%20used)
 - [RootMe Solving](#RootMe%20Solving)
@@ -48,7 +48,7 @@ em que `-T4` representa o template de temporização (de 0 a 5, quanto maior, ma
 
 O resultado da enumeração está a seguir:
 
-![nmap primeiro teste](rootme_nmap1.png)
+![nmap primeiro teste](assets_rootme/rootme_nmap1.png)
 
 Com isso foi possível identificar que havia dois serviços abertos na máquina alvo: ssh e http. Antes de continuar, decidi responder a outras perguntas na ordem do roteiro do TryHackMe, sendo uma delas descobrir a versão do Apache que estava rodando. Para isso, bastou modificar o comando do Nmap para 
 
@@ -56,7 +56,7 @@ Com isso foi possível identificar que havia dois serviços abertos na máquina 
 
 em que o argumento `-sV` faz a busca determinar informações sobre a versão dos serviços em uso, resultando na imagem a seguir: 
 
-![nmap segundo teste](rootme_nmap2.png)
+![nmap segundo teste](assets_rootme/rootme_nmap2.png)
 
 Diante dos novos resultados, verifiquei que o sistema estava na versão 2.4.41 do Apache. Mais uma vez, é possível perceber a utilidade do Nmap em rapidamente identificar informações sobre o sistema a ser atacado.
 
@@ -64,11 +64,11 @@ Sabendo que há apenas dois serviços sendo executados pela máquina, ssh e http
 
 Inserindo o IP da máquina no navegador, deparei-me com a seguinte página:
 
-![rootme_page](rootme_page.png)
+![rootme_page](assets_rootme/rootme_page.png)
 
 Diante da página inicial, decidi olhar o código fonte dela para ver se encontrava algo de interessante, mas não encontrei nenhuma informação relevante que pudesse me ajudar a invadir a máquina, mesmo encontrando os diretórios `/js` e `/css`, que, ao verificar, realmente apenas continham arquivos `.js` e `.css`, sem nada de interesse.
 
-![rootme_page_srcode](rootme_page_srcode.png)
+![rootme_page_srcode](assets_rootme/rootme_page_srcode.png)
 
 Todavia, para não gastar meu tempo à toa, antes de explorar sem rumo o sistema web, decidi executar logo o Gobuster enquanto verificava outros diretórios do site. 
 ### Directory Enumeration
@@ -81,21 +81,21 @@ que essencialmente procura por diretórios (`dir`) usando uma wordlist fornecida
 
 O resultado final foi o seguinte:
 
-![rootme_gobuster](rootme_gobuster.png)
+![rootme_gobuster](assets_rootme/rootme_gobuster.png)
 
 Todavia, como dito no final da seção anterior, continuei explorando o site enquanto executava o gobuster, ou seja, no momento que o gobuster identificava um diretório novo, eu acessava a página desse diretório para tentar encontrar algo de interesse, dado que o gobuster, apesar de ser mais rápido que testar manualmente, continua sendo um algoritmo de força bruta e, mesmo escolhendo uma wordlist não tão grande (`directory-list-2.3-medium.txt`), pode ser demorado para testar todos os diretórios.
 
 Em `/uploads` não encontrei nada de útil no momento, e já havia explorado `/css` e `/js` anteriormente, então quando descobri a existência de `/panel` entrei e me deparei com esta página:
 
-![rootme_panel](rootme_panel.png)
+![rootme_panel](assets_rootme/rootme_panel.png)
 
 O diretório `/panel` continha um formulário para o upload de arquivos. Prontamente testei um arquivo básico `.html` para ver se o site realmente aceitava o upload de arquivos
 
-![rootme_panel_upload_success](rootme_panel_upload_success.png)
+![rootme_panel_upload_success](assets_rootme/rootme_panel_upload_success.png)
 
 e ao clicar em ver, fui direcionado para a página de uploads, de forma mais específica, para o arquivo que eu havia enviado.
 
-![rootme_uploads_html](rootme_uploads_html.png)
+![rootme_uploads_html](assets_rootme/rootme_uploads_html.png)
 
 Sabendo que era possível enviar arquivos para o sistema e que, pelo gobuster, havia diretórios com a extensão `.php`, era hora de tentar obter acesso como usuário na máquina alvo.
 ### Access as User (Reverse Shell)
@@ -114,11 +114,11 @@ contendo os seguintes argumentos argumentos:
 
 Após executar o comando, acessei o site [revshells.com](https://www.revshells.com/), que contém um compilado de códigos para gerar shells reversas e peguei o primeiro que achei para php (https://github.com/pentestmonkey/php-reverse-shell). 
 
-![rootme_revshell](rootme_revshell.png)
+![rootme_revshell](assets_rootme/rootme_revshell.png)
 
 Coloquei o IP da vpn do meu computador e a porta corretos e fiz o upload para o sistema:
 
-![rootme_php_not_allowed](rootme_php_not_allowed.png)
+![rootme_php_not_allowed](assets_rootme/rootme_php_not_allowed.png)
 
 O site bloqueou o envio de um arquivo `.php`, porém pode ser que ele não rejeite outras versões de php, então, mudando para `.php5`, foi possível enviar o arquivo. 
 
@@ -126,11 +126,11 @@ Neste momento, o site ficou carregando eternamente, o que até seria esperado, d
 
 Com a máquina reiniciada e com um IP novo, o upload foi bem sucedido e, ao clicar em "Veja", o site entrou no loop, como esperado e, dessa vez o netcat funcionou:
 
-![netcat](rootme_netcat.png)
+![netcat](assets_rootme/rootme_netcat.png)
 
 Tendo acesso direto ao terminal da máquina, testei para ver qual usuário eu era com `whoami` e descobri que era o www-data. Sabendo disso, a flag do `user.txt` não deve estar no diretório home, mas sim no diretório do www-data, que estaria em `/var/www`, por padrão nos servidores webs.
 
-![netcat ls](rootme_ls_var.png)
+![netcat ls](assets_rootme/rootme_ls_var.png)
 
 Essa ideia foi corroborada quando, executei:
 
@@ -138,14 +138,14 @@ Essa ideia foi corroborada quando, executei:
 
 O comando find procurou por um arquivo de nome `user.txt` desde o diretório raiz (`/`), ignorando os erros (`2>/dev/null`). Assim, ele retornou o lugar exato de `user.txt` e encontrei a primeira flag:
 
-![user.txt](rootme_find_usertxt.png)
+![user.txt](assets_rootme/rootme_find_usertxt.png)
 
 Após ter a primeira flag, o objetivo agora era realizar a escalação privilégio para obter a flag `root.txt`.
 ### Privilege Escalation
 
 Por fim, para obter a flag em root, foi necessária a escalação de privilégios. Antes disso, porém, eu conferi se o meu usuário realmente não tinha acesso a comandos privilegiados com 
 
-![rootme_sudo-l](rootme_sudo-l.png)
+![rootme_sudo-l](assets_rootme/rootme_sudo-l.png)
 
 O comando `sudo -l` lista todos os comandos que podem ser usados como super user, mas em um contexto de reverse shell, necessitei de usar a flag `-S` para ler do input do meu terminal. Vendo que pediu uma senha, a qual eu não possuía, já suspeitei que o usuário www-data poderia ter algum privilégio, mesmo que não total. Para encontrar isso, executei
 
@@ -153,7 +153,7 @@ O comando `sudo -l` lista todos os comandos que podem ser usados como super user
 
 que busca por arquivos (`-type f`) que tenham a permissão de super user (`-perm -4000`) e ignora os erros, ou seja, mostra na tela apenas os arquivos que, em www-data, tem a permissão de executar comandos privilegiados. O resultado do processo mostrou vários arquivos, parte deles mostrados abaixo:
 
-![rootme_perms](rootme_perms.png)
+![rootme_perms](assets_rootme/rootme_perms.png)
 
 Ao ler a lista notei um arquivo interessante:
 
@@ -165,7 +165,7 @@ Isso é uma oportunidade para escalação de privilégios, pois é possível rod
 
 Com isso, obtive acesso ao root, e naveguei até a pasta `/root`, na qual foi possível encontrar a flag `root.txt`, como visto abaixo:
 
-![rootme_root](rootme_root.png)
+![rootme_root](assets_rootme/rootme_root.png)
 
 Tendo a última flag em mãos, concluí este CTF.
 ## Conclusão
