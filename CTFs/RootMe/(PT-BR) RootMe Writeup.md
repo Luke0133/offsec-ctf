@@ -1,6 +1,6 @@
 # RootMe Writeup
 
-> [!NOTE] [EN] This version of the writeup is in portuguese. Click [here]((EN-US)%20RootMe%20Writeup.md) to go to the english version.
+> [!NOTE] [EN] This version of the writeup is in portuguese. Click [here]((EN-US)%20RootMe%20Writeup.md) or follow [this link (github)](https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/RootMe/(EN%20-%20US)%20RootMe%20Writeup.md) to go to the english version.
 ## Sumário
 
 Link do writeup no github: https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/RootMe/(PT-BR)%20RootMe%20Writeup.md
