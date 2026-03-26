@@ -1,6 +1,6 @@
 # RootMe Writeup
 
-> [!NOTE] [PT] Essa versão do writeup está em inglês. Clique [aqui](%28PT%20-%20BR%29%20RootMe%20Writeup.md) para ir para a versão em português.
+> [!NOTE] [PT] Essa versão do writeup está em inglês. Clique [aqui](%28PT-BR%29%20RootMe%20Writeup.md) para ir para a versão em português.
 
 > [!Warning] [EN] This writeup is unfinished. I'm still working to translate everything, sorry for the inconvenience
 ## Sumário
