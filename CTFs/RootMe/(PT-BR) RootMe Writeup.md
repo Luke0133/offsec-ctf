@@ -1,9 +1,11 @@
 # RootMe Writeup
 
 > [!NOTE] [EN] This version of the writeup is in portuguese. Click [here]((EN-US)%20RootMe%20Writeup.md) or follow [this link (github)](https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/RootMe/(EN%20-%20US)%20RootMe%20Writeup.md) to go to the english version.
+
+> Link para o desafio CTF: https://tryhackme.com/room/rrootme
 ## Sumário
 
-Link do writeup no github: https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/RootMe/(PT-BR)%20RootMe%20Writeup.md
+> Link do writeup no github: https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/RootMe/(PT-BR)%20RootMe%20Writeup.md
 
 - [Ferramentas Utilizadas](#ferramentas%20utilizadas)
 - [Solução do RootMe](#Solução%20do%20RootMe)
@@ -38,11 +40,11 @@ Após conectar-me ao VPN do TryHackMe, obtive acesso à maquina e iniciei o desa
 
 ### Enumeração de Rede
 
-Iniciando a primeira etapa, foi-se feito o uso do Nmap para identificar os serviços abertos na máquina alvo. Sendo o IP da máquina alvo `10.64.138.6`, o comando executado foi:
+Iniciando a primeira etapa, usei o Nmap para identificar os serviços abertos na máquina alvo. Sendo o IP da máquina alvo `10.64.138.6`, o comando executado foi:
 
 ``` nmap -T4 10.64.138.6  ```
 
-em que `-T4` representa o template de temporização (de 0 a 5, quanto maior, mais rápido, ou seja, mais interações e menos discrição). Como este é um contexto de CTF básico, não há necessidade de uma discrição na enumeração, por isso foi-se escolhido um número alto.
+em que `-T4` representa o template de temporização (de 0 a 5, quanto maior, mais rápido, ou seja, mais interações e menos discrição). Como este é um contexto de CTF básico, não há necessidade de uma discrição na enumeração, por isso escolhi um número alto.
 
 O resultado da enumeração está a seguir:
 
@@ -73,7 +75,7 @@ Todavia, para não gastar meu tempo à toa, antes de explorar sem rumo o sistema
 
 Usando o Gobuster, foi possível enumerar os diretórios principais do sistema com facilidade. O comando que utilizei foi:
 
-``` gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.64.138.6 -x .php .html -t 50 ```
+```gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.64.138.6 -x .php .html -t 50 ```
 
 que essencialmente procura por diretórios (`dir`) usando uma wordlist fornecida contendo nomes comuns de diretórios (`-w`) em um url fornecido (`-u`), no caso, o da máquina alvo. Com o argumento `-x` expandi a busca para considerar extensões `.php` e `.html`, comuns em um sistema web, e com o argumento `-t 50` aumentei o número de threads para melhorar a eficiência, dado que a discrição não é um problema comum em CTFs. 
 
@@ -81,7 +83,7 @@ O resultado final foi o seguinte:
 
 ![rootme_gobuster](assets_rootme/rootme_gobuster.png)
 
-Todavia, como dito no final da seção anterior, continuei explorando o site enquanto executava o gobuster, ou seja, no momento que o gobuster identificava um diretório novo, eu acessava a página desse diretório para tentar encontrar algo de interesse, dado que o gobuster, apesar de ser mais rápido que testar manualmente, continua sendo um algoritmo de força bruta e, mesmo escolhendo uma wordlist não tão grande (`directory-list-2.3-medium.txt`), pode ser demorado para testar todos os diretórios.
+Todavia, como dito no final da seção anterior, continuei explorando o site enquanto executava o gobuster, ou seja, no momento em que este identificava um diretório novo, eu acessava a página desse diretório para tentar encontrar algo de interesse, dado que ele, apesar de ser mais rápido do que testar manualmente, continua sendo um algoritmo de força bruta e, mesmo escolhendo uma wordlist não tão grande (`directory-list-2.3-medium.txt`), pode ser demorado para testar todos os diretórios.
 
 Em `/uploads` não encontrei nada de útil no momento, e já havia explorado `/css` e `/js` anteriormente, então quando descobri a existência de `/panel` entrei e me deparei com esta página:
 
@@ -112,8 +114,6 @@ contendo os seguintes argumentos argumentos:
 
 Após executar o comando, acessei o site [revshells.com](https://www.revshells.com/), que contém um compilado de códigos para gerar shells reversas e peguei o primeiro que achei para php (https://github.com/pentestmonkey/php-reverse-shell). 
 
-![rootme_revshell](assets_rootme/rootme_revshell.png)
-
 Coloquei o IP da vpn do meu computador e a porta corretos e fiz o upload para o sistema:
 
 ![rootme_php_not_allowed](assets_rootme/rootme_php_not_allowed.png)
@@ -126,7 +126,7 @@ Com a máquina reiniciada e com um IP novo, o upload foi bem sucedido e, ao clic
 
 ![netcat](assets_rootme/rootme_netcat.png)
 
-Tendo acesso direto ao terminal da máquina, testei para ver qual usuário eu era com `whoami` e descobri que era o www-data. Sabendo disso, a flag do `user.txt` não deve estar no diretório home, mas sim no diretório do www-data, que estaria em `/var/www`, por padrão nos servidores webs.
+Tendo acesso direto ao terminal da máquina, testei para ver qual usuário eu era com `whoami` e descobri que era o www-data. Sabendo disso, a flag do `user.txt` provavelmente não deve estar no diretório `/home`, mas sim no diretório do usuário www-data, que seria `/var/www`, o local padrão para servidores webs baseados em Apache.
 
 ![netcat ls](assets_rootme/rootme_ls_var.png)
 
