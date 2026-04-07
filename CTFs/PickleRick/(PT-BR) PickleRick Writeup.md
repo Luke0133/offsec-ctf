@@ -8,7 +8,7 @@
 > **Data de Resolução:** `2026/04/03`
 ## Sumário
 
-> Link do writeup no github: 
+> Link do writeup no github: [https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/PickleRick/(PT-BR)%20PickleRick%20Writeup.md](https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/PickleRick/(PT-BR)%20PickleRick%20Writeup.md)
 
 - [Ferramentas Utilizadas](#ferramentas%20utilizadas)
 - [Resolução do CTF](#Resolução%20do%20CTF)
@@ -113,7 +113,7 @@ Os resultados finais dessa enumeração serão discutidos durante a fase de expl
 
 Ao acessar a página inicial (index.php), me deparei com a seguinte tela:
 
-![pagina inicial](assets_picklerick/rick_index.png)
+![pagina inicial](UnB/Offsec/CTFs/PickleRick/assets_picklerick/rick_index.png)
 
 A tela inicial em si não continha nenhuma informação relevante, fora o fato de serem três flags (três ingredientes) que eu deveria encontrar, o que eu já sabia, dado a página do CTF no TryHackMe. Enquanto o gobuster rodava, verifiquei o código fonte dessa página e encontrei um nome de usuário escondido nos comentários do html:
 
@@ -138,11 +138,11 @@ A tela inicial em si não continha nenhuma informação relevante, fora o fato d
 
 Também vi que existia o diretório assets, mas nenhum dos arquivos lá era de interesse:
 
-![picklerick_assets.png](assets_picklerick/picklerick_assets.png)
+![picklerick_assets.png](UnB/Offsec/CTFs/PickleRick/assets_picklerick/picklerick_assets.png)
 
 Nesse momento, o gobuster indicou uma página nova: `/login.php`, em que eu poderia colocar um usuário (e eu tinha o nome de um usuário, `R1ckRul3s`) e uma senha, essa era a que faltava. Testei algumas senhas básicas, como o nome do próprio usuário, "admin", dentre outras, mas nenhuma funcionou.
 
-| ![picklerick_login.png](assets_picklerick/picklerick_login.png) |
+| ![picklerick_login.png](UnB/Offsec/CTFs/PickleRick/assets_picklerick/picklerick_login.png) |
 | :-------------------------------------------------------------: |
 |    *Tela de login, presente em http://<TARGET_IP>/login.php*    |
 |                                                                 |
@@ -154,15 +154,15 @@ Wubbalubbadubdub
 
 Testei o nome de usuário que eu tinha com o texto acima como senha e consegui acessar o diretório `/portal.php`, que antes me redirecionava para a página de login. Nessa página, havia um painel de comandos, bem como outras abas (as quais não continham nada útil):
 
-![picklerick_cmd.png](assets_picklerick/picklerick_cmd.png)
+![picklerick_cmd.png](UnB/Offsec/CTFs/PickleRick/assets_picklerick/picklerick_cmd.png)
 
 Decidi então testar algum comando nessa caixa de texto, `ls`, e consegui listar os arquivos e diretórios do site:
 
-![picklerick_cmd_ls.png](assets_picklerick/picklerick_cmd_ls.png)
+![picklerick_cmd_ls.png](UnB/Offsec/CTFs/PickleRick/assets_picklerick/picklerick_cmd_ls.png)
 
 Com isso, encontrei um arquivo chamado `Sup3rS3cretPickl3Ingred.txt`. Ao tentar realizar a leitura com `cat`, vi que o comando não era permitido pelo site:
 
-![picklerick_cmd_cat.png](assets_picklerick/picklerick_cmd_cat.png)
+![picklerick_cmd_cat.png](UnB/Offsec/CTFs/PickleRick/assets_picklerick/picklerick_cmd_cat.png)
 
 Então, decidi codificar o comando para base 64 e executá-lo na caixa de texto:
 ```sh
@@ -171,7 +171,7 @@ Y2F0IFN1cDNyUzNjcmV0UGlja2wzSW5ncmVkLnR4dA==
 ```
  em que o `-n` retira o caracter de linha nova e, assim, no painel de comandos do site foi possível descobrir o conteúdo da flag:
  
-![picklerick_cmd_64.png](assets_picklerick/picklerick_cmd_64.png)
+![picklerick_cmd_64.png](UnB/Offsec/CTFs/PickleRick/assets_picklerick/picklerick_cmd_64.png)
 
 Vale notar que também era possível acessar os conteúdos do arquivo com o comando `less`, sem precisar de codificar para base 64.
 
