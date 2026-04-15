@@ -18,7 +18,7 @@
 
 ## Ferramentas Utilizadas
 
-Para este CTF, foram utilizadas as seguintes ferramentas a seguir:
+Para este CTF, foram utilizadas as seguintes ferramentas:
 - [Nmap](https://nmap.org/): ferramenta de exploração da internet, criada para escanear rapidamente redes de larga escala. O Nmap realiza diversas requisições para um IP para determinar quais hosts estão disponíveis naquela rede, quais serviços que eles oferecem (por exemplo, HTTP, ssh, ...), quais sistemas operacionais (e versões destes) estão utilizando dentre outras informações. Sendo uma ferramenta poderosa para a enumeração de serviços e fornecimento de informações básicas sobre os hosts de uma rede, dados essenciais para alguém que está tentando invadir um sistema, o Nmap é muito utilizado em situações de pentesting e geralmente faz parte do primeiro passo nos CTFs.
 - [Gobuster](https://github.com/OJ/gobuster): ferramenta responsável por enumerar por força bruta diretórios e arquivos, detectar subdomínios DNS e hosts virtuais, dentre outras funções. Por ser de alta performance, o Gobuster é essencial para agilizar o processo de encontrar diretórios de sistemas, poupando o desgaste da pessoa invasora de procurá-los manualmente, sendo, portanto recomendado para CTFs e pentesting.
 - [Netcat](http://www.stearns.org/nc/): programa basico de Unix responsável por ler e escrever dados através de conexões de rede. Em um contexto de pentesting, o netcat é uma ótima ferramenta para criar conexões com os sistemas na rede e ter acesso a eles de forma remota, permitindo técnicas como a de reverse shell (explicada melhor [posteriormente](#Acesso%20como%20Usuário%20(Reverse%20Shell))), muito importante também nos contextos de CTF.
