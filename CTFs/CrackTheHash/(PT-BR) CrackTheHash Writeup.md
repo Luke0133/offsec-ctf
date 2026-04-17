@@ -353,7 +353,7 @@ Analyzing 'e5d8870e5bdd26602cab8dbe07a942c8669e56d6'
 #[...]
 ```
 
-Decidi testar com `SHA-1`, porém era necessário escolher o modo certo que aceitasse o salt fornecido, de modo que o hash de entrada seria `e5d8870e5bdd26602cab8dbe07a942c8669e56d6:tryhackme`. Após testar alguns casos, encontrei o resultado `<FLAG_2-4>` com o modo `HMAC-SHA1 (key = $salt)`:
+Decidi testar com `SHA-1`, porém era necessário escolher o modo certo que aceitasse o salt fornecido, de modo que o hash de entrada seria `e5d8870e5bdd26602cab8dbe07a942c8669e56d6:tryhackme`. Após testar alguns casos, encontrei o resultado `<FLAG_2-4>` com o modo `HMAC-SHA1` (key = $salt):
 
 ```bash
 $ hashcat -a 0 -m 160 'e5d8870e5bdd26602cab8dbe07a942c8669e56d6:tryhackme' /usr/share/wordlists/rockyou.txt
