@@ -134,9 +134,9 @@ Os resultados finais dessa enumeração serão discutidos durante a fase de expl
 
 > ```
 > 113/tcp open  ident?
-| fingerprint-strings: 
-|   GenericLines, Help, LDAPSearchReq, NULL, RPCCheck, SSLSessionReq: 
-|_    http://localhost/key_rev_key <- You will find the key here!!!
+> | fingerprint-strings: 
+> |   GenericLines, Help, LDAPSearchReq, NULL, RPCCheck, SSLSessionReq: 
+> |_    http://localhost/key_rev_key <- You will find the key here!!!
 > ```
 
 Algo de interessante pode estar por ali também.
