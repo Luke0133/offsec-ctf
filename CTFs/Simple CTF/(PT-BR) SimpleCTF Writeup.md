@@ -8,7 +8,7 @@
 > **Data de Resolução:** `2026/04/30
 ## Sumário
 
-> Link do writeup no github: 
+> Link do writeup no github: [https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/Simple%20CTF/(PT-BR)%20SimpleCTF%20Writeup.md](https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/Simple%20CTF/(PT-BR)%20SimpleCTF%20Writeup.md)
 
 - [Ferramentas Utilizadas](#ferramentas%20utilizadas)
 - [Resolução do CTF](#Resolução%20do%20CTF)

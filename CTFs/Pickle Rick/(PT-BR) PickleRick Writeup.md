@@ -8,7 +8,7 @@
 > **Data de Resolução:** `2026/04/03`
 ## Sumário
 
-> Link do writeup no github: [https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/PickleRick/(PT-BR)%20PickleRick%20Writeup.md](https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/PickleRick/(PT-BR)%20PickleRick%20Writeup.md)
+> Link do writeup no github: [https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/Pickle%20Rick/(PT-BR)%20PickleRick%20Writeup.md](https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/Pickle%20Rick/(PT-BR)%20PickleRick%20Writeup.md)
 
 - [Ferramentas Utilizadas](#ferramentas%20utilizadas)
 - [Resolução do CTF](#Resolução%20do%20CTF)
