@@ -221,7 +221,7 @@ Hash.Target......: 279412f945939ba78ce0758d3fd83daa
 
 Sem querer desistir desses tipos de hash, testei na Crackstation[^crackstation] e tive sucesso, encontrando a `<FLAG_1-5>` rapidamente e, realmente, era do tipo `MD4`:
 
-![assets_cth/cth_crackstation.png](assets_cth/cth_crackstation.png)
+![cth_crackstation.png](cth_crackstation.png)
 
 ### Hash 2-1
 
@@ -294,7 +294,7 @@ Hash.Target......: 1dfeca0c002ae40b8619ecf94819cc1b
 
 Para não perder tempo testando diferentes tipos de algoritmos de hashing, decidi testar na Crackstation[^crackstation] novamente, e tive sucesso, encontrando a `<FLAG_2-2>` rapidamente:
 
-![assets_cth/cth_crackstation2.png](assets_cth/cth_crackstation2.png)
+![cth_crackstation2.png](cth_crackstation2.png)
 
 O tipo do hash era `NTLM`, iria ter demorado testar vários algoritmos até ter chegado neste. De fato, ao testar com o `hashcat`[^hashcat], com o modo `NTLM`, também encontrei a `<FLAG_2-2>`:
 
