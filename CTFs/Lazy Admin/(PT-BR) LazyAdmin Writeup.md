@@ -149,15 +149,15 @@ Finished
 
 Ao acessar `http://vul.net`, deparei-me com a página padrão do Apache, que não continha nenhuma informação relevante:
 
-![pagina inicial](UnB/Offsec/CTFs/Lazy%20Admin/assets_lazy/lazy_index.png)
+![pagina inicial](assets_lazy/lazy_index.png)
 
 Com os dados da enumeração de diretórios de `http://vul.net`, o único além de `/index` era o `/content`, que era a página padrão do SweetRice[^sweet]:
 
-![sweetrice_page](UnB/Offsec/CTFs/Lazy%20Admin/assets_lazy/lazy_content.png)
+![sweetrice_page](assets_lazy/lazy_content.png)
 
 Decidi fazer mais uma enumeração de diretórios, dessa vez em `http://vul.net/content` e encontrei diversos diretórios, a maioria não contendo informações úteis, mas em `http://vul.net/content/as`, encontrei uma página de login:
 
-![pagina inicial](UnB/Offsec/CTFs/Lazy%20Admin/assets_lazy/lazy_as.png)
+![pagina inicial](assets_lazy/lazy_as.png)
 
 Como eu não tinha credenciais para entrar, decidi, por meio do `searchsploit`[^searchsploit], ver se havia alguma vulnerabilidade para o SweetRice:
 
@@ -204,7 +204,7 @@ http://localhost/SweetRice-transfer.zip
 
 Ao acessar `http://vul.net/content/inc/mysql_backup`, pude fazer o download do backup do banco de dados:
 
-![sql backup page](UnB/Offsec/CTFs/Lazy%20Admin/assets_lazy/lazy_backup.png)
+![sql backup page](assets_lazy/lazy_backup.png)
 
 Lendo o arquivo de backup encontrei a seguinte linha:
 
@@ -244,15 +244,15 @@ Hash.Target......: cbfdac6008f9cab4083784cbd1874f76618d2a97
 
 Com isso, usei o usuário `manager` e a senha `<PASSWORD>` para passar da página de login e me deparei com o painel de administração do site:
 
-![sql backup page](UnB/Offsec/CTFs/Lazy%20Admin/assets_lazy/lazy_panel.png)
+![sql backup page](assets_lazy/lazy_panel.png)
 
 Após procurar um pouco por um ponto de acesso, encontrei a página para propagandas e descobri que poderia colocar qualquer script, então peguei um script de `php` para gerar uma reverse shell[^reverseshell] a partir do código fornecido em [revshells.com](https://www.revshells.com/)[^revshellgen] e salvei:
 
-![sql backup page](UnB/Offsec/CTFs/Lazy%20Admin/assets_lazy/lazy_ads_page.png)
+![sql backup page](assets_lazy/lazy_ads_page.png)
 
 Esse código foi parar em um arquivo em `http://vul.net/content/inc/ads`:
 
-![sql backup page](UnB/Offsec/CTFs/Lazy%20Admin/assets_lazy/lazy_shell.png)
+![sql backup page](assets_lazy/lazy_shell.png)
 
 Abri uma escuta com o netcat[^netcat]:
 

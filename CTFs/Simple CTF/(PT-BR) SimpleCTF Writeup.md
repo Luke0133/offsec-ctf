@@ -128,7 +128,7 @@ Os resultados finais dessa enumeração serão discutidos durante a fase de expl
 
 Ao acessar `http://vul.net`, deparei-me com a página padrão do Apache, que não continha nenhuma informação relevante:
 
-![pagina inicial](UnB/Offsec/CTFs/Simple%20CTF/assets_sctf/sctf_index.png)
+![pagina inicial](assets_sctf/sctf_index.png)
 
 Nesse momento, comecei a enumeração de diretórios de `http://vul.net`. Enquanto isso, explorei o serviço ftp[^ftp]. Como em alguns casos é possível entrar com um usuário anônimo, sem a necessidade de senhas, decidi testar para essa máquina e, realmente, consegui acesso anônimo:
 
@@ -169,11 +169,11 @@ De fato, o arquivo não continha tantas informações, mas pelo menos sei que h�
 
 Com os resultados do `gobuster`, descobri o diretório `/simple`, que levava para a página padrão do CMS Made Simple[^cms], um sistema de gerenciamento de conteúdo para auxiliar o desenvolvimento e administração de websites:
 
-![pagina inicial](UnB/Offsec/CTFs/Simple%20CTF/assets_sctf/sctf_simple.png)
+![pagina inicial](assets_sctf/sctf_simple.png)
 
 A versão do serviço estava no final da página:
 
-![pagina inicial](UnB/Offsec/CTFs/Simple%20CTF/assets_sctf/sctf_simple_version.png)
+![pagina inicial](assets_sctf/sctf_simple_version.png)
 
 Assim, por meio do `searchsploit`[^searchsploit], busquei por alguma vulnerabilidade para o CMS Made Simple, na versão `2.2.8`:
 
