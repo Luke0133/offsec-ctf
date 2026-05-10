@@ -115,7 +115,7 @@ Os resultados finais dessa enumeração serão discutidos durante a fase de expl
 
 Ao acessar a página inicial (index.html), me deparei com a seguinte tela:
 
-![pagina inicial](bh_index.png)
+![pagina inicial](assets_bh/bh_index.png)
 
 A tela inicial em si não continha nenhuma informação relevante, fornece o contexto do CTF de uma forma amigável. Procurei no código fonte da página para ver se havia algo interessante e não achei nada, apenas um trecho indicando um diretório de imagens, mas lá apenas havia a imagem `crew.jpg`:
 
