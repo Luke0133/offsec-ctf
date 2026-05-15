@@ -4,7 +4,9 @@
 > **[EN]** This version of the writeup is in portuguese. Click [here]() or follow [this link (github)]() to go to the english version.
 
 > **Link para o desafio CTF**: [https://tryhackme.com/room/crackthehash](https://tryhackme.com/room/crackthehash)
+> 
 > **Dificuldade:** `Fácil`
+> 
 > **Data de Resolução:** `2026/04/11`
 ## Sumário
 
