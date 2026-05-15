@@ -5,7 +5,7 @@
 
 > **Link para o desafio CTF**: [https://tryhackme.com/room/tomghost](https://tryhackme.com/room/tomghost)
 > **Dificuldade:** `Fácil`
-> **Data de Resolução:** `2026/05/10`
+> **Data de Resolução:** `2026/05/09`
 ## Sumário
 
 > Link do writeup no github: [https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/Tomghost/(PT-BR)%20Tomghost%20Writeup.md](https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/Tomghost/(PT-BR)%20Tomghost%20Writeup.md)
