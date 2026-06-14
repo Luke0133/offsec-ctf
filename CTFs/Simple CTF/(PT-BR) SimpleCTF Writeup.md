@@ -5,7 +5,7 @@
 
 > **Link para o desafio CTF**: [https://tryhackme.com/room/easyctf](https://tryhackme.com/room/easyctf)
 > **Dificuldade:** `Fácil`
-> **Data de Resolução:** `2026/04/30
+> **Data de Resolução:** `2026/04/30`
 ## Sumário
 
 > Link do writeup no github: [https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/Simple%20CTF/(PT-BR)%20SimpleCTF%20Writeup.md](https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/Simple%20CTF/(PT-BR)%20SimpleCTF%20Writeup.md)
