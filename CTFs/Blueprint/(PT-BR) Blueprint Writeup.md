@@ -28,7 +28,7 @@ Para este CTF, foram utilizadas as seguintes ferramentas:
 - [Netcat](http://www.stearns.org/nc/)[^netcat]: programa basico de Unix responsável por ler e escrever dados através de conexões de rede. Em um contexto de pentesting, o `netcat` é uma ótima ferramenta para criar conexões com os sistemas na rede e ter acesso a eles de forma remota, permitindo técnicas como a de reverse shell, muito importante também nos contextos de CTF.
 - [hashcat](https://hashcat.net/)[^hashcat]: ferramenta de recuperação de senhas, usada para atacar algoritmos de hash. Ela pode ser usada em diversos modos, como força bruta (podendo ser auxiliado por uma máscara), lista de dicionário (como a lista de senhas vazada da RockYou[^rockyou]), dentre outros. 
 - [searchsploit](https://www.exploit-db.com/searchsploit)[^searchsploit]: ferramenta de pesquisa da [Exploit Database](https://www.exploit-db.com)[^exploitdb] que permite buscar por CVEs e outras vulnerabilidades de forma offline pelo terminal. As Common Vulnerabilities and Exposures[^CVE] são referências públicas a vulnerabilidades de segurança e a  [Exploit Database](https://www.exploit-db.com)[^exploitdb] contém uma lista dessas vulnerabilidades, com descrições e modos de replicar. O `searchsploit`[^searchsploit] permite que o processo de busca seja feito rapidamente por meio do terminal e é muito utilizado em contextos de penetration tests e CTFs.
-- [Impaket](https://github.com/fortra/impacket)[^impaket]: coleção de classes python focados no acesso de pacotes de rede. Por meio dessas classes, vários scripts podem ser feitos para extrair dados de sistemas, dentre eles o `impacket-secretsdump`, o qual permite extrair segredos de máquinas remotas (ou de forma local). 
+- [Impacket](https://github.com/fortra/impacket)[^impacket]: coleção de classes python focados no acesso de pacotes de rede. Por meio dessas classes, vários scripts podem ser feitos para extrair dados de sistemas, dentre eles o `impacket-secretsdump`, o qual permite extrair segredos de máquinas remotas (ou de forma local). 
 ## Resolução do CTF
 
 O CTF Blueprint, disponível no TryHackMe, é um desafio de dificuldade fácil que requer a exploração de um sistema windows para achar a flag de root e o hash NTLM do usuário "Lab". Esse CTF envolveu o uso de uma vulnerabilidade do serviço osCommerce e o uso de ferramentas diferentes para obter hashes de usuários.
@@ -218,7 +218,7 @@ E consegui baixar os arquivos diretamente à minha máquina, acessando o site:
 
 ![includes](assets_blueprint/blueprint_includes.png)
 
-Usando o `impacket-secretsdump`, do conjunto de scripts `python3-impaket`[^impaket], que é capaz de encontrar hashes escondidas em arquivos de um sistema:
+Usando o `impacket-secretsdump`, do conjunto de scripts `python3-impacket`[^impacket], que é capaz de encontrar hashes escondidas em arquivos de um sistema:
 
 ```sh
 impacket-secretsdump -sam sam.save -system system.save LOCAL 
@@ -268,7 +268,7 @@ O CTF blueprint proporcionou a exploração de serviços Windows a partir de uma
 [^searchsploit]: Searchsploit: [https://www.exploit-db.com/searchsploit](https://www.exploit-db.com/searchsploit)
 [^exploitdb]: Exploit Database (Exploit-DB): [https://www.exploit-db.com](https://www.exploit-db.com)
 [^CVE]: Sobre CVEs: [https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures](https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures)
-[^impacket]: Impaket: [https://github.com/fortra/impacket](https://github.com/fortra/impacket)
+[^impacket]: Impacket: [https://github.com/fortra/impacket](https://github.com/fortra/impacket)
 [^osCommerce]: Site do osCommerce: https://www.oscommerce.com/
 [^EDB-44374]: Remote Code Execution (44374): [https://www.exploit-db.com/exploits/44374](https://www.exploit-db.com/exploits/44374)
 [^EDB-50128]: Remote Code Execution (2) (50128) : [https://www.exploit-db.com/exploits/50128](https://www.exploit-db.com/exploits/50128)
