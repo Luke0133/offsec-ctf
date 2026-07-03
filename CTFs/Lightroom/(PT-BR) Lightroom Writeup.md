@@ -4,11 +4,13 @@
 > **[EN]** This version of the writeup is in portuguese. Click [here]() or follow [this link (github)]() to go to the english version.
 
 > **Link para o desafio CTF**: [https://tryhackme.com/room/lightroom](https://tryhackme.com/room/lightroom)
+> 
 > **Dificuldade:** `Fácil`
+> 
 > **Data de Resolução:** `2026/07/01`
 ## Sumário
 
-> Link do writeup no github: 
+> Link do writeup no github: [https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/Lightroom/(PT-BR)%20Lightroom%20Writeup.md](https://github.com/Luke0133/offsec-ctf/blob/main/CTFs/Lightroom/(PT-BR)%20Lightroom%20Writeup.md)
 
 - [Ferramentas Utilizadas](#ferramentas%20utilizadas)
 - [Resolução do CTF](#Resolução%20do%20CTF)
@@ -178,7 +180,7 @@ Password: <ADMIN_PASSWORD>,<FLAG>
 Tendo todas as informações de todas as tabelas, consegui obter os dados que o CTF pedia e finalizei o CTF.
 ## Conclusão
 
-O CTF Lightroom permitiu entender melhor como que são feitos ataques por injeção de SQL. Após identificar o tipo do serviço do banco de dados, foi possível extrair a estrutura completa do banco de dados e encontrar todas as informações pedidas pelo CTF.
+O CTF Lightroom, apesar de simples, permitiu entender melhor como que são feitos ataques por injeção de SQL. Após identificar o tipo do serviço do banco de dados, foi possível extrair a estrutura completa do banco de dados e encontrar todas as informações pedidas pelo CTF.
 ## Referências
 
 [^netcat]: Netcat: [http://www.stearns.org/nc/](http://www.stearns.org/nc/)
